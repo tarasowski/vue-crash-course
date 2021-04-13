@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+    body {
+    }
+    .fav {
+      border: 1px solid red;
+      background-color: white;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="app">
+      <h1>This is my Vue App</h1>
+      <!-- variable -->
+      <p>{{ title }} - {{ author }} - {{ age }}</p>
+
+      <!-- v-on is a directive -->
+      <!-- v-on:click can be replaced with @ -> shortcut -->
+      <button v-on:click="increase"> + Increase age</button>
+      <button @click="decrease"> - Decrease age</button>
+      <input type="text" @input="changeTitle($event, 'custom data')">
+      <!-- conditional rendering v-if directive -->
+      <div v-if="age > 47">
+        <p>Show only if there is age over 47</p>
+      </div>
+
+      <!-- uses css to display or hide the element display=none -->
+      <div v-show="age > 47">
+        <p>Show directive</p>
+      </div>
+
+    <!-- for loops in vue -->
+    <div>
+      <ul>
+        <!-- dynamic classes, give an element a class based on condition -->
+        <!-- you bind a class first and put {} the expression -->
+        <!-- <li v-for="book in books" :class="{fav: book.isFav}" @click="updateFav(book)"> -->
+        <!-- here we use computed property to make it dynamic -->
+        <li v-for="book in filteredBooks" :class="{fav: book.isFav}" @click="updateFav(book)">
+          <img :src="book.image" :alt="book.title">
+          <h3>{{ book.title }} </h3>
+          <p> {{ book.author }} </p>
+        </li>
+      </ul>
+
+      <!-- attribute binding -->
+      <!-- we bind data to attribute with v-bind or simply : as a shortcut -->
+      <div>
+        <a v-bind:href="url">best website ever</a>
+        <br>
+        <a :href="url2">the second coolest website</a>
+      </div>
+    </div>
+
+    <!-- computed property -->
+    <div>
+      <h3> {{ filteredBooks }}</h3>
+    </div>
+
+
+    </div>
+
+    <script src="apps.js"></script>
+  </body>
+
+</html>
