@@ -1,25 +1,6 @@
-<template>
-  <div class="home">
-    <h1>Home</h1>
-    <!-- we check if there is an error, show this block -->
-    <div v-if="error"> {{ error }} </div>
-    <!-- if the value was loaded and posts has a lenght -->
-    <div v-if="posts.lenght">
-      <PostList :posts="posts" />
-    </div>
-    <!-- if nothing of the conditions works output loading -->
-    <div v-else>Loading...</div>
-  </div>
-</template>
+import { ref } from "vue"
 
-<script>
-  import PostList from "..."
-  import { ref } from "vue"
-
-export default {
-  name: "Home",
-  components: { PostList },
-  setup() {
+export const getData = () => {
     const posts = ref([])
     const error = ref(null)
 
@@ -37,12 +18,6 @@ export default {
         console.log(error.value)
       }
     }
-    load()
-    return { posts, error }
-  }
+
+  return { posts, error, load }
 }
-
-</script>
-
-<style>
-</style>
